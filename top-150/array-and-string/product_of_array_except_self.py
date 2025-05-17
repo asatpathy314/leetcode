@@ -27,3 +27,28 @@ class Solution:
 """
 Pretty chill. Comments explain.
 """
+
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        output = [0] * n
+        product = 1
+
+        # calculate prefixes
+        for i, num in enumerate(nums):
+            output[i] = product
+            product *= num
+
+        # combine with suffixes
+        product = 1
+        for i in range(n - 1, -1, -1):
+            output[i] *= product
+            product *= nums[i]
+
+        return output
+
+
+"""
+A more efficient solution that stores the prefixes and just uses a running value of the suffix and combines it with the stored prefixes instead of storing prefixes and suffixes in separate arrays. 
+"""
