@@ -32,3 +32,33 @@ class Solution:
 """
 Confusing problem. Figured it out. Just a traversal pattern can determine manually. 
 """
+
+
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1:
+            return s
+
+        final = []
+        switch = True
+
+        for row in range(numRows):
+            switch = True
+            i = row
+            while i < len(s):
+                final.append(s[i])
+                if row == 0 or row == numRows - 1:
+                    i += 2 * (numRows - 1)
+                else:
+                    if switch:
+                        i += 2 * (numRows - 1 - row)
+                    else:
+                        i += 2 * row
+                    switch = not switch
+
+        return "".join(final)
+
+
+"""
+A prettier solution with more efficient multiplication. 
+"""
